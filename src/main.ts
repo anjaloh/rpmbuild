@@ -1,5 +1,5 @@
-import core from '@actions/core';
-import exec from '@actions/exec';
+import * as core from '@actions/core';
+import * as exec from '@actions/exec';
 // import github from '@actions/github';
 import cp from 'child_process';
 import fs from 'fs';
@@ -30,8 +30,8 @@ async function run() {
 			}
 		}
 
-		console.log(`Package Name: ${name}`);
-		console.log(`Package Version: ${version}`);
+		core.debug(`Package Name: ${name}`);
+		core.debug(`Package Version: ${version}`);
 
 		await exec.exec('rpmdev-setuptree');
 
@@ -63,8 +63,8 @@ async function run() {
 				console.error(err);
 			} else {
 				outputSRPM = stdout.trim();
-				console.log(`stdout: ${stdout}`);
-				console.log(`stderr: ${stderr}`);
+				core.debug(`stdout: ${stdout}`);
+				core.debug(`stderr: ${stderr}`);
 			}
 		});
 
