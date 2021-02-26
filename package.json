@@ -1,6 +1,6 @@
 {
   "name": "container-toolkit-template",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "description": "Container template action using actions/toolkit",
   "main": "lib/main.js",
   "scripts": {

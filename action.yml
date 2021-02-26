@@ -1,10 +1,29 @@
-name: 'Container Action Template'
-description: 'Get started with Container actions'
-author: 'GitHub'
-inputs: 
-  myInput:
-    description: 'Input to use'
-    default: 'world'
+name: "Build & Release RPM Packages"
+description: "Build RPM package from a spec file and submit it as a release asset or an artifact."
+author: "Anjalo Hettiarachchi <anjalohettiarachchi@gmail.com>"
+
+inputs:
+  spec_file_path:
+    description: "Path to the spec file."
+    required: true
+    default: "*.spec"
+
+outputs:
+  source_rpm_path:
+    description: "Path to the Source RPM file."
+  source_rpm_dir_path:
+    description: "Path to the SRPMS directory."
+  source_rpm_name:
+    description: "Name of the Source RPM file."
+  rpm_dir_path:
+    description: "Path to the RPMS directory."
+  rpm_content_type:
+    description: "Content-type of the RPM package to be uploaded."
+
 runs:
-  using: 'docker'
-  image: 'Dockerfile'
+  using: "docker"
+  image: "Dockerfile"
+
+branding:
+  icon: "package"
+  color: "white"
