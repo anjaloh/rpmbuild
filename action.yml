@@ -4,7 +4,7 @@ author: "Anjalo Hettiarachchi <anjalohettiarachchi@gmail.com>"
 
 inputs:
   spec_file_path:
-    description: "Path to the spec file."
+    description: "Name of the spec file."
     required: true
     default: "*.spec"
 

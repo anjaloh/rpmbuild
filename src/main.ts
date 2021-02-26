@@ -12,9 +12,9 @@ async function run() {
 		// const repo = context.repo.repo;
 		// const ref = context.ref;
 
-		const specFilePath = core.getInput('spec_file_path');
+		const specFile = core.getInput('spec_file');
 
-		let data = fs.readFileSync(specFilePath, 'utf8');
+		let data = fs.readFileSync(specFile, 'utf8');
 		let name = '';
 		let version = '';
 
@@ -36,20 +36,24 @@ async function run() {
 		await exec.exec('rpmdev-setuptree');
 
 		await exec.exec(
-			`cp /github/workspace/${specFilePath} /github/home/rpmbuild/SPECS/`
+			`cp /github/workspace/SPECS/${specFile} /github/home/rpmbuild/SPECS/`
 		);
 
 		await exec.exec(
-			`spectool --get-files --all /github/home/rpmbuild/SPECS/${specFilePath}`
+			`cp -R /github/workspace/SOURCES/. /github/home/rpmbuild/SOURCES/`
 		);
 
 		await exec.exec(
-			`dnf builddep -y github/home/rpmbuild/SPECS/${specFilePath}`
+			`spectool --get-files --all /github/home/rpmbuild/SPECS/${specFile}`
+		);
+
+		await exec.exec(
+			`dnf builddep -y /github/home/rpmbuild/SPECS/${specFile}`
 		);
 
 		try {
 			await exec.exec(
-				`rpmbuild -ba github/home/rpmbuild/SPECS/${specFilePath}`
+				`rpmbuild -ba /github/home/rpmbuild/SPECS/${specFile}`
 			);
 		} catch (err) {
 			core.setFailed(`rpmbuild failed: ${err}`);
