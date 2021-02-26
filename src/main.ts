@@ -1,17 +1,10 @@
 import * as core from '@actions/core';
 import * as exec from '@actions/exec';
-// import github from '@actions/github';
 import cp from 'child_process';
 import fs from 'fs';
 
 async function run() {
 	try {
-		// const context = github.context;
-
-		// const owner = context.repo.owner;
-		// const repo = context.repo.repo;
-		// const ref = context.ref;
-
 		const specFile = core.getInput('spec_file');
 
 		let data = fs.readFileSync(
@@ -67,9 +60,20 @@ async function run() {
 		let outputSRPM = '';
 		cp.exec('ls /github/home/rpmbuild/SRPMS/', (err, stdout, stderr) => {
 			if (err) {
-				console.error(err);
+				core.error(`Error getting output SRPM: ${err}`);
 			} else {
 				outputSRPM = stdout.trim();
+				core.debug(`stdout: ${stdout}`);
+				core.debug(`stderr: ${stderr}`);
+			}
+		});
+
+		let outputRPM = '';
+		cp.exec('ls /github/home/rpmbuild/RPMS/', (err, stdout, stderr) => {
+			if (err) {
+				core.error(`Error getting output RPM: ${err}`);
+			} else {
+				outputRPM = stdout.trim();
 				core.debug(`stdout: ${stdout}`);
 				core.debug(`stderr: ${stderr}`);
 			}
@@ -84,12 +88,12 @@ async function run() {
 		cp.exec('cp -R /github/home/rpmbuild/RPMS/. rpmbuild/RPMS/');
 
 		await exec.exec('ls -la rpmbuild/SRPMS');
-		await exec.exec('ls -la rpmbuild/RPMS');
+		await exec.exec('ls -la rpmbuild/RPMS/x86_64');
 
-		core.setOutput('source_rpm_dir_path', `rpmbuild/SRPMS/`); // Path to SRPMS directory
-		core.setOutput('source_rpm_path', `rpmbuild/SRPMS/${outputSRPM}`); // Path to Source RPM file
-		core.setOutput('source_rpm_name', `${outputSRPM}`); // Name of Source RPM file
-		core.setOutput('rpm_dir_path', `rpmbuild/RPMS/`); // Path to RPMS directory
+		core.setOutput(
+			'asset_paths',
+			`rpmbuild/SRPMS/${outputSRPM};rpmbuild/RPMS/x86_64/${outputRPM}`
+		); // Paths to RPM and Source RPM files
 		core.setOutput('rpm_content_type', 'application/octet-stream'); // Content-type for Upload
 	} catch (error) {
 		core.setFailed(error.message);

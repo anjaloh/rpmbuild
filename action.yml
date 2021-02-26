@@ -9,14 +9,8 @@ inputs:
     default: "*.spec"
 
 outputs:
-  source_rpm_path:
-    description: "Path to the Source RPM file."
-  source_rpm_dir_path:
-    description: "Path to the SRPMS directory."
-  source_rpm_name:
-    description: "Name of the Source RPM file."
-  rpm_dir_path:
-    description: "Path to the RPMS directory."
+  asset_paths:
+    description: "Paths to the RPM and Source RPM files."
   rpm_content_type:
     description: "Content-type of the RPM package to be uploaded."
 
@@ -26,4 +20,4 @@ runs:
 
 branding:
   icon: "package"
-  color: "white"
+  color: "blue"
