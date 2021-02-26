@@ -3,7 +3,7 @@ description: "Build RPM package from a spec file and submit it as a release asse
 author: "Anjalo Hettiarachchi <anjalohettiarachchi@gmail.com>"
 
 inputs:
-  spec_file_path:
+  spec_file:
     description: "Name of the spec file."
     required: true
     default: "*.spec"
