@@ -9,10 +9,16 @@ inputs:
     default: "*.spec"
 
 outputs:
-  asset_paths:
-    description: "Paths to the RPM and Source RPM files."
-  rpm_content_type:
-    description: "Content-type of the RPM package to be uploaded."
+  rpm_path:
+    description: "Path to the RPM package."
+  rpm_name:
+    description: "Name of the RPM package."
+  srpm_path:
+    description: "Path to the Source RPM package."
+  srpm_name:
+    description: "Name of the Source RPM package."
+  content_type:
+    description: "Content-type of the packages."
 
 runs:
   using: "docker"

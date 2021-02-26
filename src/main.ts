@@ -93,11 +93,11 @@ async function run() {
 		await exec.exec('ls -la rpmbuild/SRPMS');
 		await exec.exec('ls -la rpmbuild/RPMS/x86_64');
 
-		core.setOutput(
-			'asset_paths',
-			`rpmbuild/SRPMS/${outputSRPM};rpmbuild/RPMS/x86_64/${outputRPM}`
-		); // Paths to RPM and Source RPM files
-		core.setOutput('rpm_content_type', 'application/octet-stream'); // Content-type for Upload
+		core.setOutput('rpm_path', `rpmbuild/RPMS/x86_64/${outputRPM}`); // Paths to the RPM package
+		core.setOutput('rpm_name', `${outputRPM}`); // Name of the RPM package
+		core.setOutput('srpm_path', `rpmbuild/SRPMS/${outputSRPM};`); // Paths to the Source RPM package
+		core.setOutput('srpm_name', `${outputSRPM};`); // Name of the Source RPM package
+		core.setOutput('content_type', 'application/octet-stream'); // Content-type for the upload
 	} catch (error) {
 		core.setFailed(error.message);
 	}
