@@ -69,15 +69,18 @@ async function run() {
 		});
 
 		let outputRPM = '';
-		cp.exec('ls /github/home/rpmbuild/RPMS/', (err, stdout, stderr) => {
-			if (err) {
-				core.error(`Error getting output RPM: ${err}`);
-			} else {
-				outputRPM = stdout.trim();
-				core.debug(`stdout: ${stdout}`);
-				core.debug(`stderr: ${stderr}`);
+		cp.exec(
+			'ls /github/home/rpmbuild/RPMS/x86_64/',
+			(err, stdout, stderr) => {
+				if (err) {
+					core.error(`Error getting output RPM: ${err}`);
+				} else {
+					outputRPM = stdout.trim();
+					core.debug(`stdout: ${stdout}`);
+					core.debug(`stderr: ${stderr}`);
+				}
 			}
-		});
+		);
 
 		await exec.exec('mkdir -p rpmbuild/SRPMS');
 		await exec.exec('mkdir -p rpmbuild/RPMS');
