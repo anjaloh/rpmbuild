@@ -36,7 +36,7 @@ async function run() {
 		await exec.exec('rpmdev-setuptree');
 
 		await exec.exec(
-			`/github/workspace/${specFilePath} /github/home/rpmbuild/SPECS/`
+			`cp /github/workspace/${specFilePath} /github/home/rpmbuild/SPECS/`
 		);
 
 		await exec.exec(
