@@ -47,7 +47,7 @@ async function run() {
 		);
 
 		await exec.exec(
-			`spectool --get-files --all /github/home/rpmbuild/SPECS/${specFile}`
+			`spectool --get-files --directory /github/home/rpmbuild/SOURCES --all /github/home/rpmbuild/SPECS/${specFile}`
 		);
 
 		await exec.exec(
