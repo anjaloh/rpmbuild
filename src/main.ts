@@ -14,7 +14,10 @@ async function run() {
 
 		const specFile = core.getInput('spec_file');
 
-		let data = fs.readFileSync(specFile, 'utf8');
+		let data = fs.readFileSync(
+			`/github/workspace/SPECS/${specFile}`,
+			'utf8'
+		);
 		let name = '';
 		let version = '';
 
