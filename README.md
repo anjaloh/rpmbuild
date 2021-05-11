@@ -2,6 +2,8 @@
 
 This GitHub Action is intended to build RPM and SRPM packages from a spec file and submit it as a release asset or an artifact to the same repository.
 
+***Note:** Currently only support builds for Fedora releases.
+
 # Inputs
 
 - `spec_file`: Name of the spec file. **(required)**
@@ -18,7 +20,20 @@ This GitHub Action is intended to build RPM and SRPM packages from a spec file a
 
 ## Pre-requisites
 
-Create a GitHub workflow `.yml` file in the `.github/workflows` directory in your repository. An [example](#example-workflow) is given below. For more information, reference the GitHub Help documentation for [creating a workflow file](https://help.github.com/en/articles/configuring-a-workflow#creating-a-workflow-file).
+Create a GitHub workflow `.yml` file in the `.github/workflows` directory inside your repository. An [example](#example-workflow) is given below. For more information, reference the GitHub Help documentation for [creating a workflow file](https://help.github.com/en/articles/configuring-a-workflow#creating-a-workflow-file).
+
+## Fedora Release Version
+
+You can specify the Fedora release version using the following syntax to build your RPM and/or SRPM packages for specific releases. Currently supported Fedora release versions are,
+- latest (Fedora 34)
+- f33 (Fedora 33)
+
+Syntax:
+```YAML
+...
+uses: AnjaloHettiarachchi/rpmbuild@{VERSION}-{FEDORA_VERSION}
+...
+```
 
 # Example Workflow
 
