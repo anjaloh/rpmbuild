@@ -1,4 +1,4 @@
-FROM anjalohettiarachchi/docker-github-action-rpmbuild:latest
+FROM anjalohettiarachchi/docker-github-action-rpmbuild:f33
 
 # Copying all contents of rpmbuild repo inside container
 COPY . .
