@@ -86,9 +86,9 @@ async function run() {
 		await exec.exec('mkdir -p rpmbuild/RPMS');
 
 		await exec.exec(
-			`mv /github/home/rpmbuild/SRPMS/${outputSRPM} rpmbuild/SRPMS`
+			`mv /github/home/rpmbuild/SRPMS/${outputSRPM} rpmbuild/SRPMS/`
 		);
-		cp.exec(`mv /github/home/rpmbuild/RPMS/x86_64/${outputRPM} rpmbuild/RPMS/`);
+		cp.exec(`mv /github/home/rpmbuild/RPMS/x86_64/${outputRPM} rpmbuild/RPMS/x86_64/`);
 
 		await exec.exec('ls -la rpmbuild/SRPMS');
 		await exec.exec('ls -la rpmbuild/RPMS/x86_64');
