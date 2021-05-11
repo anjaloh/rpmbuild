@@ -2,7 +2,7 @@
 
 This GitHub Action is intended to build RPM and SRPM packages from a spec file and submit it as a release asset or an artifact to the same repository.
 
-***Note:** Currently only support builds for Fedora releases.
+***Note:** Currently only support builds for Fedora `x86_64` releases.
 
 # Inputs
 
