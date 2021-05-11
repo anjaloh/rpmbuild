@@ -24,14 +24,14 @@ Create a GitHub workflow `.yml` file in the `.github/workflows` directory inside
 
 ## Fedora Release Version
 
-You can specify the Fedora release version using the following syntax to build your RPM and/or SRPM packages for specific releases. Currently supported Fedora release versions are,
-- latest (Fedora 34)
-- f33 (Fedora 33)
+You can specify the Fedora release version using the following syntax to build your RPM and/or SRPM packages for a specific release. Currently supported Fedora release versions are,
+- `latest` (Fedora 34)
+- `f33` (Fedora 33)
 
 Syntax:
 ```YAML
 ...
-uses: AnjaloHettiarachchi/rpmbuild@{VERSION}-{FEDORA_VERSION}
+uses: AnjaloHettiarachchi/rpmbuild@{GH_ACTION_VERSION}-{FEDORA_VERSION}
 ...
 ```
 
